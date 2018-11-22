@@ -37,10 +37,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _getData();
     });
-
-   
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,37 +63,38 @@ class _HomePageState extends State<HomePage> {
 //        ),
         Expanded(child: ListView.builder(
             itemCount: data == null ? 0 : data.length,
-            itemBuilder: (context, index){
+            itemBuilder: (context, index) {
               return Card(
                 margin: EdgeInsets.all(10.0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.all(10.0),
-                        child: Text(data[index]["title"],
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.all(10.0),
+                      child: Text(data[index]["title"],
+                        style: TextStyle(
+                          fontSize: 18.0,
                         ),
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 170.0,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(image: NetworkImage(data[index]["urlToImage"]),
-                          fit: BoxFit.cover
-                          ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 170.0,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(data[index]["urlToImage"]),
+                            fit: BoxFit.cover
                         ),
                       ),
-                      Container(
+                    ),
+                    Container(
                         margin: EdgeInsets.all(10.0),
                         child: Text(data[index]["description"],
                           style: TextStyle(
-                            fontSize: 15.0
+                              fontSize: 15.0
                           ),
                         )
-                      ),
-                      Container(
+                    ),
+                    Container(
                         margin: EdgeInsets.all(10.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,34 +106,32 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             Row(
-                              children: <Widget>[
-                                Container(
-                                  width: 120.0,
-                                  height: 30.0,
-                                  child: RaisedButton(onPressed: (){},
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                                    color: Colors.red,
-                                    child: Text("Leia mais..",
-                                    style: TextStyle(
-                                      color: Colors.white
-                                    ),
-                                    ),
+                                children: <Widget>[
+                                  Container(
+                                    width: 120.0,
+                                    height: 30.0,
+                                    child: RaisedButton(onPressed: () {},
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              20.0)),
+                                      color: Colors.red,
+                                      child: Text("Leia mais..",
+                                        style: TextStyle(
+                                            color: Colors.white
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                )
-                              ],
-                            )
+                                ])
                           ],
-                        ),
-                      )
-                    ],
-                  )
+                        )
+                    )
+                  ],
+                ),
               );
-            }
-        ))
-      ],
+            })
+          )
+        ],
       );
     }
-
-
 }
