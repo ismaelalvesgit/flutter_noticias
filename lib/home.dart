@@ -33,10 +33,6 @@ class _HomeState extends State<Home> {
         children: <Widget>[
             Scaffold(
               drawer: DrawerWidget(_pageController),
-              appBar: AppBar(
-                title: Text("Ultimas noticías"),
-                centerTitle: true,
-              ),
               body: HomePage(),
             ),
         ],

@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
         .showBottomSheet((context) {
       return Stack(
         children: <Widget>[
-          _widget_background_login(),
+          _widget_Background_Login(),
           Container(
             height: double.infinity,
             width: double.infinity,
@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
         .showBottomSheet((context) {
       return Stack(
         children: <Widget>[
-          _widget_background_login(),
+          _widget_Background_Login(),
           Container(
               height: double.infinity,
               width: double.infinity,
@@ -275,7 +275,7 @@ class _LoginPageState extends State<LoginPage> {
         .showBottomSheet((context) {
       return Stack(
         children: <Widget>[
-          _widget_background_login(),
+          _widget_Background_Login(),
           Container(
               height: double.infinity,
               width: double.infinity,
@@ -389,7 +389,7 @@ class _LoginPageState extends State<LoginPage> {
         .showBottomSheet((context) {
       return Stack(
         children: <Widget>[
-          _widget_background_login(),
+          _widget_Background_Login(),
           Container(
               height: double.infinity,
               width: double.infinity,
@@ -535,7 +535,7 @@ class _LoginPageState extends State<LoginPage> {
         .showBottomSheet((context) {
       return Stack(
         children: <Widget>[
-          _widget_background_login(),
+          _widget_Background_Login(),
           Container(
               height: double.infinity,
               width: double.infinity,
@@ -653,7 +653,7 @@ class _LoginPageState extends State<LoginPage> {
 
   /*Style Background*/
 
-  Widget _widget_background_login(){
+  Widget _widget_Background_Login(){
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage("images/backgroun-login.jpg"),
@@ -671,7 +671,7 @@ class _LoginPageState extends State<LoginPage> {
       key: _scaffoldKey,
       body: Stack(
         children: <Widget>[
-          _widget_background_login(),
+          _widget_Background_Login(),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
