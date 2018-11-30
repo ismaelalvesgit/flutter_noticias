@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-//import 'package:noticias/page/home/home_service.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,7 +20,6 @@ class _HomePageState extends State<HomePage> {
 
   String perquisa = "vida";
 
-//  final _homeService = new HomeService();
 
   Future<String> _getData() async{
     http.Response response;
@@ -92,13 +90,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-//    _homeService.getData().then((data){
-//      setState(() {
-//        data = data;
-//        print(data);
-//      });
-//
-//    });
     setState(() {
       _getData();
     });
@@ -122,13 +113,39 @@ class _HomePageState extends State<HomePage> {
       controller: _scrollController,
       slivers: <Widget>[
         SliverAppBar(
-          floating: true,
-          snap: true,
-          backgroundColor: Colors.red,
+          floating: false,
+          pinned: true,
+          expandedHeight: 170.0,
           elevation: 0.0,
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.search), onPressed: (){
+              showSearch(context: context, delegate: DataSearch());
+            })
+          ],
           flexibleSpace: FlexibleSpaceBar(
-            title: const Text("Novidades"),
+            title: InkWell(
+              onTap: (){
+                _scrollController.animateTo(
+                  0.0,
+                  curve: Curves.easeInOut,
+                  duration: const Duration(milliseconds: 300),
+                );
+              },
+              child: Text("Ultimas Noicias"),
+            ),
             centerTitle: true,
+            background: Carousel(
+              autoplay: false,
+              overlayShadow: false,
+              noRadiusForIndicator: false,
+              showIndicator: false,
+              animationCurve: Curves.easeIn,
+              images: [
+                AssetImage("imagens/slider-01.png"),
+                AssetImage("imagens/slider-02.png"),
+                AssetImage("imagens/slider-03.png"),
+              ],
+            )
           ),
         ),
         SliverList(
@@ -211,4 +228,56 @@ class _HomePageState extends State<HomePage> {
       ],
     ), onRefresh: _refresList);
   }
+}
+
+class DataSearch extends SearchDelegate<String>{
+
+  final Cities = [
+
+  ];
+
+  final recentesCities = [
+    "sport",
+    "vida",
+    "entreterimento"
+  ];
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    // TODO: implement buildActions
+    return [IconButton(icon: Icon(Icons.clear), onPressed: (){
+      Navigator.pop(context);
+    })];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    // TODO: implement buildLeading
+    return IconButton(icon: AnimatedIcon(icon: AnimatedIcons.menu_arrow, progress: transitionAnimation),
+    onPressed: (){
+
+    });
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    return null;
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: implement buildSuggestions
+
+    final suggestionlist = query.isEmpty ? recentesCities : Cities;
+
+    return ListView.builder(
+      itemCount: suggestionlist.length,
+      itemBuilder: (context, index)=> ListTile(
+        leading: Icon(Icons.search),
+        title: Text(suggestionlist[index]),
+      ),
+    );
+  }
+
 }
